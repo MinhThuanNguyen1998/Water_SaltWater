@@ -9,6 +9,7 @@ public class StandTrigger : BaseTrigger
     {
         if(other.gameObject.tag == "Flask")
         {
+            MouseDragLock.Block();
             Transform flask = other.transform.parent;
             flask.SetParent(m_ParentStand.transform);
             flask.DOMove(m_AnchorStand.position, 1f)

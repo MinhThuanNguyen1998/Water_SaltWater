@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class CondenserTrigger : MonoBehaviour
+public class CondenserTrigger : BaseTrigger
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void OnEnter(Collider other)
     {
-        
+        if (Step.CurretSteps <= 1) return;
+        if (other.gameObject.tag == "Vase")
+        {
+            Debug.Log("Vase OnTrigger");
+            Step.GoToNextStep();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    protected override void OnExit(Collider other)
     {
-        
+        if (Step.CurretSteps <= 1) return;
+        if (other.gameObject.tag == "Vase")
+        {
+            Debug.Log("Vase OnExit");
+            Step.GoToPrevStep();
+        }
     }
 }

@@ -4,7 +4,7 @@ public class StepPlaceObjects : StepBase
 {
     private void OnEnable()
     {
-        TotalSteps = 3;
+        TotalSteps = 5;
         StartStep();
         CurretSteps = 0;
     }
@@ -23,6 +23,10 @@ public class StepPlaceObjects : StepBase
                 break;
             case 2:
                 Debug.Log("Step Place Objects , step 2: Place vase");
+                StepTutorialManager.Instance.GotoState(1);
+                break;
+            case 3:
+                Debug.Log("Step Burner , step 3: Use burner ");
                 StepTutorialManager.Instance.GotoState(1);
                 break;
         }

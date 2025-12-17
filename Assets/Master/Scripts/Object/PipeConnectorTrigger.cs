@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class PipeConnectorTrigger : MonoBehaviour
+public class PipeConnectorTrigger : BaseTrigger
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void OnEnter(Collider other)
     {
-        
+        if (Step.CurretSteps == 0) return;
+        if (other.gameObject.tag == "Condenser" )
+        {
+            Debug.Log("Condenser OnTrigger");
+            Step.GoToNextStep();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    protected override void OnExit(Collider other)
     {
-        
+        if (Step.CurretSteps == 0) return;
+        if (other.gameObject.tag == "Condenser")
+        {
+            Debug.Log("Condenser OnExit");
+            Step.GoToPrevStep();
+        }
     }
 }
