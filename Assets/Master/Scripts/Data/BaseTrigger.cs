@@ -6,21 +6,18 @@ public abstract class BaseTrigger : MonoBehaviour
   
     private void OnTriggerEnter(Collider other)
     {
-     
         OnEnter(other);
         //Debug.Log(other + "OnTriggerEnter");
     }
   
     private void OnTriggerExit(Collider other)
     {
-        
         OnExit(other);
         //Debug.Log(other + "OnTriggerExist");
     }
 
     private void OnTriggerStay(Collider other)
     {
-      
         OnStay(other);
         //Debug.Log(other + "OnTriggerStay");
     }

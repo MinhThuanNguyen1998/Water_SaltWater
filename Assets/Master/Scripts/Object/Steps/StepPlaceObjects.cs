@@ -11,6 +11,8 @@ public class StepPlaceObjects : StepBase
     {
         TotalSteps = 4;
         ResolveStep();
+        MouseDragLock.Unblock();
+        MouseDragLock.UnLockAfterStepsCompleted();
     }
 
     protected override int CalculateStep()

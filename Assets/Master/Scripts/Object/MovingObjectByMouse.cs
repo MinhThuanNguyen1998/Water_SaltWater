@@ -28,8 +28,7 @@ public class MovingObjectByMouse : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (MouseDragLock.IsBlocked && m_DragCategory != DragCategory.None)return;
-
+        if (MouseDragLock.IsBlocked && m_DragCategory != DragCategory.None || MouseDragLock.IsLockedAfterStepsCompleted) return;
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = Camera.main.WorldToScreenPoint(transform.position).z; 
         m_Offset = transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
@@ -37,7 +36,7 @@ public class MovingObjectByMouse : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        if (MouseDragLock.IsBlocked && m_DragCategory != DragCategory.None) return;
+        if (MouseDragLock.IsBlocked && m_DragCategory != DragCategory.None || MouseDragLock.IsLockedAfterStepsCompleted) return;
         if (m_IsDragging)
         {
             Vector3 mousePosition = Input.mousePosition;
