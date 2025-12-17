@@ -2,16 +2,17 @@
 
 public abstract class BaseTrigger : MonoBehaviour
 {
+    [SerializeField] protected StepBase Step;
     private void OnTriggerEnter(Collider other)
     {
         OnEnter(other);
-        Debug.Log(other + "OnTriggerEnter");
+        //Debug.Log(other + "OnTriggerEnter");
     }
 
     private void OnTriggerExit(Collider other)
     {
         OnExit(other);
-        Debug.Log(other + "OnTriggerExist");
+        //Debug.Log(other + "OnTriggerExist");
     }
 
     private void OnTriggerStay(Collider other)
