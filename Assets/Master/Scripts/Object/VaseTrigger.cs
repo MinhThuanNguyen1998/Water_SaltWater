@@ -1,23 +1,21 @@
 using UnityEngine;
 
-public class CondenserTrigger : BaseTrigger
+public class VaseTrigger : BaseTrigger
 {
     protected override void OnEnter(Collider other)
     {
-        if (Step.CurretSteps <= 1) return;
         if (other.gameObject.tag == "Vase")
         {
-            Debug.Log("Vase OnTrigger");
-            Step.GoToNextStep();
+            //Debug.Log("Vase OnTrigger");
+            StepPlaceObjects.SetVasePlaced(true);
         }
     }
     protected override void OnExit(Collider other)
     {
-        if (Step.CurretSteps <= 1) return;
         if (other.gameObject.tag == "Vase")
         {
-            Debug.Log("Vase OnExit");
-            Step.GoToPrevStep();
+            //Debug.Log("Vase OnExit");
+            StepPlaceObjects.SetVasePlaced(false);
         }
     }
 }

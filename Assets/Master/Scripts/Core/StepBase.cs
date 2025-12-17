@@ -4,41 +4,21 @@ using UnityEngine.Rendering;
 public abstract class StepBase : MonoBehaviour
 {
     public int TotalSteps { get; protected set; }
-    public int CurretSteps { get; protected set; }
+    public int CurrentStep { get; protected set; }
 
-    public virtual void StartStep()
+    protected void ResolveStep()
     {
-        CurretSteps = 0;
+        int resolvedStep = CalculateStep();
+
+        if (resolvedStep == CurrentStep)
+            return;
+        CurrentStep = resolvedStep;
         ExecuteCurrentStep();
     }
-    public void GoToNextStep()
-    {
-        NextStep();
-    }
-    public void GoToPrevStep()
-    {
-        PrevStep();
-    }
-    protected void PrevStep()
-    {
-        if (CurretSteps <= 0)
-        {
-            return;
-        }
-        CurretSteps--;
-        if (CurretSteps >= 1)
-        {
-            ExecuteCurrentStep();
-        }
-        else StartStep();
-    }
-    protected void NextStep()
-    {
-        CurretSteps++;
-        if(CurretSteps <= TotalSteps) ExecuteCurrentStep();
-        else OnAllStepCompleted();
-    }
+    protected abstract int CalculateStep();
     protected abstract void ExecuteCurrentStep();
-    
-    protected virtual void OnAllStepCompleted() { }
+    protected bool IsCompleted()
+    {
+        return CurrentStep >= TotalSteps;
+    }
 }

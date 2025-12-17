@@ -4,20 +4,20 @@ public class PipeConnectorTrigger : BaseTrigger
 {
     protected override void OnEnter(Collider other)
     {
-        if (Step.CurretSteps == 0) return;
+        
         if (other.gameObject.tag == "Condenser" )
         {
-            Debug.Log("Condenser OnTrigger");
-            Step.GoToNextStep();
+            //Debug.Log("Condenser OnTrigger");
+            StepPlaceObjects.SetPipeConnectorPlaced(true);
         }
     }
     protected override void OnExit(Collider other)
     {
-        if (Step.CurretSteps == 0) return;
         if (other.gameObject.tag == "Condenser")
         {
-            Debug.Log("Condenser OnExit");
-            Step.GoToPrevStep();
+            //Debug.Log("Condenser OnExit");
+            StepPlaceObjects.SetPipeConnectorPlaced(false);
+
         }
     }
 }

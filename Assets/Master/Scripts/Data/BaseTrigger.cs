@@ -2,7 +2,7 @@
 
 public abstract class BaseTrigger : MonoBehaviour
 {
-    [SerializeField] protected StepBase Step;
+    [SerializeField] protected StepPlaceObjects StepPlaceObjects;
   
     private void OnTriggerEnter(Collider other)
     {

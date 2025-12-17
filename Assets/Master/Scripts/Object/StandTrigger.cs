@@ -18,7 +18,7 @@ public class StandTrigger : BaseTrigger
                  {
                      flask.localPosition = m_AnchorStand.localPosition;
                  });
-            Step.GoToNextStep();
+            StepPlaceObjects.SetStandPlaced(true);
 
         }
     }

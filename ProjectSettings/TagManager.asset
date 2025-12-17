@@ -7,13 +7,11 @@ TagManager:
   - Boundary
   - Solid
   - Flask
-  - Pipe
   - GroupChangeColor
   - Table
-  - UnSolid
   - Bunsen
-  - Tube
-  - Lid
+  - Condenser
+  - Vase
   layers:
   - Default
   - TransparentFX
