@@ -32,7 +32,6 @@ public class BurnerEffectController : MonoBehaviour
             StopOutline();
             m_FireParticleSystem.Play();
             DeActiveLighter();
-            
         }
         m_SmokeCoroutine = StartCoroutine(CoroutinePlayEffectAfterDelay());
     }
