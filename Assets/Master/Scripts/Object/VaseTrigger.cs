@@ -6,8 +6,11 @@ public class VaseTrigger : BaseTrigger
     [SerializeField] private Transform m_AnchorVase;
     protected override void OnEnter(Collider other)
     {
+       
         if (other.gameObject.tag == "Vase")
         {
+            if (IgnoreTrigger()) return;
+
             MouseDragLock.LockAfterStepsCompleted();
             //Debug.Log("Vase OnTrigger");
             other.transform.DOMove(m_AnchorVase.position,1f)
@@ -22,8 +25,14 @@ public class VaseTrigger : BaseTrigger
     {
         if (other.gameObject.tag == "Vase")
         {
+            if (IgnoreTrigger()) return;
             //Debug.Log("Vase OnExit");
             StepPlaceObjects.SetVasePlaced(false);
         }
+    }
+
+    private bool IgnoreTrigger()
+    {
+        return StepPlaceObjects.CurrentStep < 2;
     }
 }

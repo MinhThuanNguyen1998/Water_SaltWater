@@ -15,7 +15,7 @@ public class PipeConnectorTrigger : BaseTrigger
     {
         if (other.gameObject.tag == "Condenser")
         {
-            //Debug.Log("Condenser OnExit");
+           //Debug.Log("Condenser OnExit");
             StepPlaceObjects.SetPipeConnectorPlaced(false);
 
         }
