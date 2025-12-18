@@ -1,9 +1,13 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 public class VaseTrigger : BaseTrigger
 {
-    [SerializeField] private Transform m_AnchorVase;
+    [SerializeField] private GameObject m_AnchorVase;
+    private void OnEnable()
+    {
+        m_AnchorVase.SetActive(false);
+    }
     protected override void OnEnter(Collider other)
     {
        
@@ -11,14 +15,10 @@ public class VaseTrigger : BaseTrigger
         {
             if (IgnoreTrigger()) return;
 
-            MouseDragLock.LockAfterStepsCompleted();
+            m_AnchorVase.SetActive(false);
             //Debug.Log("Vase OnTrigger");
-            other.transform.DOMove(m_AnchorVase.position,1f)
-                .OnComplete(() =>
-                {
-                    StepPlaceObjects.SetVasePlaced(true);
-                    MouseDragLock.UnLockAfterStepsCompleted();
-                });
+            StepPlaceObjects.SetVasePlaced(true);
+            
         }
     }
     protected override void OnExit(Collider other)
@@ -27,6 +27,7 @@ public class VaseTrigger : BaseTrigger
         {
             if (IgnoreTrigger()) return;
             //Debug.Log("Vase OnExit");
+            m_AnchorVase.SetActive(true);
             StepPlaceObjects.SetVasePlaced(false);
         }
     }

@@ -6,6 +6,7 @@ public class StepPlaceObjects : StepBase
     private bool m_IsPipeConnectorPlaced;
     private bool m_IsVasePlaced;
     private bool m_IsBurnerUsed;
+    
     private void OnEnable()
     {
         TotalSteps = 4;
