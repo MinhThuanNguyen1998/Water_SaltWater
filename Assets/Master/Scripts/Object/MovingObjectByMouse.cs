@@ -36,7 +36,12 @@ public class MovingObjectByMouse : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        if (MouseDragLock.IsBlocked && m_DragCategory == DragCategory.ChemicalTools || MouseDragLock.IsLockedAfterStepsCompleted) return;
+        if ((MouseDragLock.IsBlocked && m_DragCategory == DragCategory.ChemicalTools)
+         || MouseDragLock.IsLockedAfterStepsCompleted)
+        {
+            m_IsDragging = false;
+            return;
+        }
         if (m_IsDragging)
         {
             Vector3 mousePosition = Input.mousePosition;

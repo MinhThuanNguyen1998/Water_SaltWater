@@ -10,21 +10,24 @@ public class BurnerEffectController : MonoBehaviour
     [Header("Effect")]
     [SerializeField] private ParticleSystem m_FireParticleSystem;
     [SerializeField] private LiquidVolume m_LiquidVolume;
+
     [Header("Outline")]
     [SerializeField] private List<Outline> m_ListOutline;
+
     [Header("GameObject")]
     [SerializeField] private GameObject m_LighterMovingObject;
     [SerializeField] private GameObject m_Thermometer_Inside_Object;
+
     [Header("SoundEffect")]
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private AudioClip m_AudioBoilingWater;
+
     private float m_WaitingTimeToPlayBoilingEffect = 15f;
     private float m_MaxTemperatureLevel = 165f;
     private float m_BoilingPoint = 0.32f;
     private Coroutine m_SmokeCoroutine;
 
     private void Awake() => m_FireParticleSystem.Stop();
-   
     public void TurnOnEffect()
     {
         if (m_FireParticleSystem != null)
@@ -70,13 +73,8 @@ public class BurnerEffectController : MonoBehaviour
     }
     public void SetTemperatureLevel(float value, float duration)
     {
-
-         duration = Mathf.Max(
-         0f,
-         m_WaitingTimeToPlayBoilingEffect - 5f
-     );
-
-        m_Thermometer_Inside_Object.transform
+         duration = Mathf.Max(0f,m_WaitingTimeToPlayBoilingEffect - 5f);
+         m_Thermometer_Inside_Object.transform
             .DOScaleY(value, duration);
     }
 }
