@@ -23,9 +23,10 @@ public class LighterTrigger : BaseTrigger
     }
     public void TurnOnLighter()
     {
-        if (!m_IsInTrigger || StepPlaceObjects.CurrentStep != 3) return;
+       // if (!m_IsInTrigger || StepPlaceObjects.CurrentStep != 3) return;
+        if (!m_IsInTrigger) return;
         Debug.Log("Turn on the ligther");
-        m_BurnerEffectController.TurnOnEffect();
-        MouseDragLock.LockAfterStepsCompleted();
+        m_BurnerEffectController.TurnOnFireEfect();
+        //MouseDragLock.LockAfterStepsCompleted();
     }
 }

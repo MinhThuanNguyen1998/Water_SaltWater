@@ -22,21 +22,25 @@ public class BurnerEffectController : MonoBehaviour
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private AudioClip m_AudioBoilingWater;
 
+    [Header("SoundEffect")]
+    [SerializeField] private StepPlaceObjects m_StepPlaceObjects;
+
     private float m_WaitingTimeToPlayBoilingEffect = 15f;
     private float m_MaxTemperatureLevel = 165f;
     private float m_BoilingPoint = 0.32f;
-    private Coroutine m_SmokeCoroutine;
+    private Coroutine m_BoilingCoroutine;
 
     private void Awake() => m_FireParticleSystem.Stop();
-    public void TurnOnEffect()
+    public void TurnOnBoilingEffect() 
     {
-        if (m_FireParticleSystem != null)
-        {
-            StopOutline();
-            m_FireParticleSystem.Play();
-            DeActiveLighter(); 
-        }
-        m_SmokeCoroutine = StartCoroutine(CoroutinePlayEffectAfterDelay());
+        if(!m_FireParticleSystem.isPlaying) return;
+        m_BoilingCoroutine = StartCoroutine(CoroutinePlayEffectAfterDelay());
+    } 
+    public void TurnOnFireEfect()
+    {
+        if (m_FireParticleSystem == null) return;
+        if (!m_FireParticleSystem.isPlaying) m_FireParticleSystem.Play();
+        if (m_StepPlaceObjects.IsStandPlaced && m_BoilingCoroutine == null) m_BoilingCoroutine = StartCoroutine(CoroutinePlayEffectAfterDelay());
     }
     private IEnumerator CoroutinePlayEffectAfterDelay()
     {

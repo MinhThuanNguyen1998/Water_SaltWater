@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class StandTrigger : BaseTrigger
 {
+    [SerializeField] private BurnerEffectController m_BurnerEffectController;
     [SerializeField] private Transform m_AnchorStand;
     [SerializeField] GameObject m_ParentStand;
     protected override void OnEnter(Collider other)
@@ -19,7 +20,7 @@ public class StandTrigger : BaseTrigger
                      flask.localPosition = m_AnchorStand.localPosition;
                  });
             StepPlaceObjects.SetStandPlaced(true);
-
+            m_BurnerEffectController.TurnOnBoilingEffect();
         }
     }
 }

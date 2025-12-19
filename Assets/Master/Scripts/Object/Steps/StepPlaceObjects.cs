@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class StepPlaceObjects : StepBase
 {
-    private bool m_IsStandPlaced;
-    private bool m_IsPipeConnectorPlaced;
-    private bool m_IsVasePlaced;
-    private bool m_IsBurnerUsed;
-    
+    public bool IsStandPlaced { get; private set; }
+    public bool PipeConnectorPlaced { get; private set; }
+    public bool IsVasePlaced { get; private set; }
+    public bool BurnerUsed { get; private set; }
     private void OnEnable()
     {
         TotalSteps = 4;
@@ -17,13 +16,13 @@ public class StepPlaceObjects : StepBase
 
     protected override int CalculateStep()
     {
-        if (!m_IsStandPlaced)
+        if (!IsStandPlaced)
             return 0; // Place stand
-        if (!m_IsPipeConnectorPlaced)
+        if (!PipeConnectorPlaced)
             return 1; // Place pipeconnector
-        if (!m_IsVasePlaced)
+        if (!IsVasePlaced)
             return 2;  // Place vase
-        if (!m_IsBurnerUsed)
+        if (!BurnerUsed)
             return 3; // Burner
         return 4; // Completed
     }
@@ -56,22 +55,22 @@ public class StepPlaceObjects : StepBase
     }
     public void SetStandPlaced(bool value)
     {
-        m_IsStandPlaced = value;
+        IsStandPlaced = value;
         ResolveStep();
     }
     public void SetPipeConnectorPlaced(bool value)
     {
-        m_IsPipeConnectorPlaced = value;
+        PipeConnectorPlaced = value;
         ResolveStep();
     }
     public void SetVasePlaced(bool value)
     {
-        m_IsVasePlaced = value;
+        IsVasePlaced = value;
         ResolveStep();
     }
     public void SetBurnerUsed(bool value)
     {
-        m_IsBurnerUsed = value;
+        BurnerUsed = value;
         ResolveStep();
     }
 }

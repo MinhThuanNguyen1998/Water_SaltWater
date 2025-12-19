@@ -7,8 +7,6 @@ public class LighterButton : MonoBehaviour
     private Vector3 m_OriginalScale;
     private Tween m_ClickTween;
     private float m_DurationScale = 0.03f;
-
-
     private void Awake()
     {
         m_OriginalScale = transform.localScale;
@@ -44,6 +42,5 @@ public class LighterButton : MonoBehaviour
     {
         if (m_FireParticleSystem.isPlaying) m_FireParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         else m_FireParticleSystem.Play(true);
-     
     }
 }
