@@ -34,15 +34,15 @@ public class BurnerEffectController : MonoBehaviour
     public void TurnOnBoilingEffect() 
     {
         if(!m_FireParticleSystem.isPlaying) return;
-        m_BoilingCoroutine = StartCoroutine(CoroutinePlayEffectAfterDelay());
+        m_BoilingCoroutine = StartCoroutine(CoroutinePlayBoilingEffectAfterDelay());
     } 
     public void TurnOnFireEfect()
     {
         if (m_FireParticleSystem == null) return;
         if (!m_FireParticleSystem.isPlaying) m_FireParticleSystem.Play();
-        if (m_StepPlaceObjects.IsStandPlaced && m_BoilingCoroutine == null) m_BoilingCoroutine = StartCoroutine(CoroutinePlayEffectAfterDelay());
+        if (m_StepPlaceObjects.IsStandPlaced && m_BoilingCoroutine == null) m_BoilingCoroutine = StartCoroutine(CoroutinePlayBoilingEffectAfterDelay());
     }
-    private IEnumerator CoroutinePlayEffectAfterDelay()
+    private IEnumerator CoroutinePlayBoilingEffectAfterDelay()
     {
         yield return new WaitForSeconds(m_WaitingTimeToPlayBoilingEffect);
         SetTemperatureLevel(m_MaxTemperatureLevel, m_WaitingTimeToPlayBoilingEffect);
