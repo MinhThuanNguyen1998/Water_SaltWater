@@ -22,9 +22,7 @@ public class StepPlaceObjects : StepBase
             return 1; // Place pipeconnector
         if (!IsVasePlaced)
             return 2;  // Place vase
-        if (!BurnerUsed)
-            return 3; // Burner
-        return 4; // Completed
+        return 3; // Completed
     }
     protected override void ExecuteCurrentStep()
     {
@@ -71,7 +69,6 @@ public class StepPlaceObjects : StepBase
     public void SetBurnerUsed(bool value)
     {
         BurnerUsed = value;
-        ResolveStep();
     }
 }
 

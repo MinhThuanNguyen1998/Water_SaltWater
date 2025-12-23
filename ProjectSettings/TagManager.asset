@@ -11,6 +11,9 @@ TagManager:
   - Bunsen
   - Condenser
   - Vase
+  - Solid
+  - BoundaryOfRing
+  - Lid
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Water
   - UI
   - Atomic
-  - 
+  - IgnoreHover
   - 
   - 
   - 

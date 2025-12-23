@@ -3,6 +3,7 @@ using UnityEngine;
 public class LighterTrigger : BaseTrigger
 {
     [SerializeField] private BurnerEffectController m_BurnerEffectController;
+    [SerializeField] private LighterButton m_LighterButton;
     private bool m_IsInTrigger = false;    
     protected override void OnEnter(Collider other)
     {
@@ -10,7 +11,7 @@ public class LighterTrigger : BaseTrigger
         {
             //Debug.Log("Bunsen is OnTrigger");
             m_IsInTrigger = true;
-            
+            TurnOnLighter();
         }
     }
     protected override void OnExit(Collider other)
@@ -23,10 +24,7 @@ public class LighterTrigger : BaseTrigger
     }
     public void TurnOnLighter()
     {
-       // if (!m_IsInTrigger || StepPlaceObjects.CurrentStep != 3) return;
-        if (!m_IsInTrigger) return;
-        Debug.Log("Turn on the ligther");
+        if (!m_IsInTrigger || !m_LighterButton.IsFireOn) return;
         m_BurnerEffectController.TurnOnFireEfect();
-        //MouseDragLock.LockAfterStepsCompleted();
     }
 }

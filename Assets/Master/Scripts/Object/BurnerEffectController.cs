@@ -22,10 +22,9 @@ public class BurnerEffectController : MonoBehaviour
     [SerializeField] private AudioSource m_AudioSource;
     [SerializeField] private AudioClip m_AudioBoilingWater;
 
-    [Header("SoundEffect")]
+    [Header("StepPlaceObjects")]
     [SerializeField] private StepPlaceObjects m_StepPlaceObjects;
 
-    private float m_WaitingTimeToPlayBoilingEffect = 15f;
     private float m_MaxTemperatureLevel = 165f;
     private float m_BoilingPoint = 0.32f;
     private Coroutine m_BoilingCoroutine;
@@ -38,36 +37,17 @@ public class BurnerEffectController : MonoBehaviour
     } 
     public void TurnOnFireEfect()
     {
-        if (m_FireParticleSystem == null) return;
         if (!m_FireParticleSystem.isPlaying) m_FireParticleSystem.Play();
         if (m_StepPlaceObjects.IsStandPlaced && m_BoilingCoroutine == null) m_BoilingCoroutine = StartCoroutine(CoroutinePlayBoilingEffectAfterDelay());
     }
     private IEnumerator CoroutinePlayBoilingEffectAfterDelay()
     {
-        yield return new WaitForSeconds(m_WaitingTimeToPlayBoilingEffect);
-        SetTemperatureLevel(m_MaxTemperatureLevel, m_WaitingTimeToPlayBoilingEffect);
-        yield return new WaitForSeconds(m_WaitingTimeToPlayBoilingEffect);
+        m_StepPlaceObjects.SetBurnerUsed(true);
+        yield return new WaitForSeconds(Config.WAITING_TIME_TO_PLAY_Temperatur_Rise_EFFECT);
+        SetTemperatureLevel(m_MaxTemperatureLevel, Config.WAITING_TIME_TO_PLAY_Temperatur_Rise_EFFECT);
+        yield return new WaitForSeconds(Config.WAITING_TIME_TO_PLAY_BOILING_EFFECT);
         PlayLoopSoundBoilingWater();
         m_LiquidVolume.sparklingAmount = m_BoilingPoint;
-    }
-    private void StopOutline()
-    {
-        foreach(Outline outline in m_ListOutline)
-        {
-            Color c = outline.OutlineColor;
-            c.a = 0f;
-            outline.OutlineColor = c;
-        }
-    }
-    private void DeActiveLighter()
-    {
-        m_LighterMovingObject.transform
-            .DOScale(Vector3.zero, 0.2f)
-            .SetEase(Ease.InBack)
-            .OnComplete(() =>
-            {
-                m_LighterMovingObject.SetActive(false);
-            });
     }
     public void PlayLoopSoundBoilingWater()
     {
@@ -77,7 +57,7 @@ public class BurnerEffectController : MonoBehaviour
     }
     public void SetTemperatureLevel(float value, float duration)
     {
-         duration = Mathf.Max(0f,m_WaitingTimeToPlayBoilingEffect - 5f);
+         duration = Mathf.Max(0f,Config.WAITING_TIME_TO_PLAY_BOILING_EFFECT - 5f);
          m_Thermometer_Inside_Object.transform
             .DOScaleY(value, duration);
     }
