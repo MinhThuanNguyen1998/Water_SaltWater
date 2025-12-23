@@ -5,10 +5,7 @@ public class PipeConnectorTrigger : BaseTrigger
     [SerializeField] private CondensationEffect CondensationEffect;
     [SerializeField] private GameObject m_AnchorCondenser;
     private bool m_HasPlayedCondensation;
-
     private void OnEnable() => ActiveAnchorCondenser(false);
-
-
     protected override void OnEnter(Collider other) => ActiveAnchorCondenser(false);
     protected override void OnStay(Collider other)
     {
@@ -26,7 +23,7 @@ public class PipeConnectorTrigger : BaseTrigger
     {
         if (other.gameObject.tag == "Condenser")
         {
-            if(StepPlaceObjects.CurrentStep >= 1) m_AnchorCondenser.SetActive(true);
+            if(StepPlaceObjects.CurrentStep >= 1) m_AnchorCondenser.SetActive(true); 
             if (IgnoreTrigger()) return;
             //Debug.Log("Condenser OnExit");
             m_HasPlayedCondensation = false;

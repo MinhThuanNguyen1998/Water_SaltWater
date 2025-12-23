@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _DisortStrength: 1
     - _DistortionOnTexture: 0
-    - _Fill: 0
+    - _Fill: 0.059999995
     - _Metallic: 0.1
     - _NormalStrength: 0.1
     - _QueueControl: 0
@@ -69,8 +69,8 @@ Material:
     - _WobbleZ: 0
     m_Colors:
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _SideColor: {r: 1, g: 0.9858491, b: 0.9858491, a: 0}
+    - _SideColor: {r: 1, g: 0.9858491, b: 0.9858491, a: 1}
     - _TintColor: {r: 0, g: 1, b: 0.8042793, a: 0}
-    - _TopColor: {r: 0.99056596, g: 0.98589355, b: 0.98589355, a: 0}
+    - _TopColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

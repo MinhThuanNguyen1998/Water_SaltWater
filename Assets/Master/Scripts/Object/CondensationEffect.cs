@@ -7,7 +7,7 @@ public class CondensationEffect : MonoBehaviour
 {
     [SerializeField] private LiquidVolume m_Liquid_Inside_Condenser;
     [SerializeField] private float m_CondensationDuration = 10f;
-    
+    [SerializeField] private DropletSpawner m_DropletSpawner;
     [Header("LiquidAlpha")]
     private float m_DefaultLiquid = 0f;
     private float m_MaxLiquid = 1f;
@@ -16,7 +16,6 @@ public class CondensationEffect : MonoBehaviour
     private Tween m_CondensationTween;
     private bool m_IsPlaying;
     private void Awake() => ResetLiquid();
-    
     public void TurnOnCondensationEffect()
     {
         if (m_IsPlaying) return;
@@ -53,7 +52,9 @@ public class CondensationEffect : MonoBehaviour
             {
                 if (m_IsPlaying)
                     PlayCondensationLoop();
+                    m_DropletSpawner.SpawnDroplet();
             });
+        
     }
     private void StopAllCondensation()
     {
