@@ -3,15 +3,21 @@ using UnityEngine;
 
 public class Config
 {
-    // Path
-    public static string StreamingAssetsPath => Application.streamingAssetsPath;
-    public const string ElementsData = "ElementsData.json";
-    public const string FullElementDetails = "FullElementDetails.json";
+    //Text Slider
+    public const string Slider_Value = "Thời gian sôi:";
+    public const string Unit_Time = " s";
 
-   
-    public const float WAITING_TIME_TO_PLAY_Temperatur_Rise_EFFECT = 10f;
-    public const float WAITING_TIME_TO_PLAY_BOILING_EFFECT = WAITING_TIME_TO_PLAY_Temperatur_Rise_EFFECT + 5f;
-    public const float WAITING_TIME_TO_PLAY_CONDENSATION_EFFECT = WAITING_TIME_TO_PLAY_BOILING_EFFECT + 10f;
+
+    public static float TemperatureRiseTime  { get; private set; } = 10f;
+    public static float BoilingTime { get; private set; }
+    public static float CondensationTime { get; private set; }
+
+    public static void SetTemperatureRiseTime(float value)
+    {
+        TemperatureRiseTime = value;
+        BoilingTime = TemperatureRiseTime + 2f;
+        CondensationTime = BoilingTime;
+    }
 }
 
    

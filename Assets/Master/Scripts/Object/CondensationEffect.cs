@@ -15,7 +15,10 @@ public class CondensationEffect : MonoBehaviour
     private Coroutine m_CondensationCoroutine;
     private Tween m_CondensationTween;
     private bool m_IsPlaying;
-    private void Awake() => ResetLiquid();
+    private void Awake()
+    {
+        ResetEffect();
+    }
     public void TurnOnCondensationEffect()
     {
         if (m_IsPlaying) return;
@@ -27,11 +30,11 @@ public class CondensationEffect : MonoBehaviour
     {
         m_IsPlaying = false;
         StopAllCondensation();
-        ResetLiquid();
+        ResetEffect();
     }
     private IEnumerator CoroutinePlayCondensationAfterDelay()
     {
-        yield return new WaitForSeconds(Config.WAITING_TIME_TO_PLAY_CONDENSATION_EFFECT);
+        yield return new WaitForSeconds(Config.CondensationTime);
         if (!m_IsPlaying) yield break;
         PlayCondensationLoop();
     }
@@ -54,7 +57,6 @@ public class CondensationEffect : MonoBehaviour
                     PlayCondensationLoop();
                     m_DropletSpawner.SpawnDroplet();
             });
-        
     }
     private void StopAllCondensation()
     {
@@ -66,11 +68,10 @@ public class CondensationEffect : MonoBehaviour
         m_CondensationTween?.Kill();
         m_CondensationTween = null;
     }
-    private void ResetLiquid()
+    private void ResetEffect()
     {
         m_Liquid_Inside_Condenser.alpha = m_DefaultLiquid;
-        m_Liquid_Inside_Condenser.level = m_MaxLiquid;
+        m_Liquid_Inside_Condenser.level = m_MaxLiquid; 
     }
-
     private void OnDisable() => StopAllCondensation();
 }

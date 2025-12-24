@@ -2,7 +2,7 @@
 
 public class PipeConnectorTrigger : BaseTrigger
 {
-    [SerializeField] private CondensationEffect CondensationEffect;
+    [SerializeField] private CondensationEffect m_CondensationEffect;
     [SerializeField] private GameObject m_AnchorCondenser;
     private bool m_HasPlayedCondensation;
     private void OnEnable() => ActiveAnchorCondenser(false);
@@ -15,7 +15,7 @@ public class PipeConnectorTrigger : BaseTrigger
             if (m_HasPlayedCondensation) return;
             //Debug.Log("Condenser OnTrigger");
             StepPlaceObjects.SetPipeConnectorPlaced(true);
-            CondensationEffect.TurnOnCondensationEffect();
+            m_CondensationEffect.TurnOnCondensationEffect();
             m_HasPlayedCondensation = true;
         }
     }
@@ -28,7 +28,7 @@ public class PipeConnectorTrigger : BaseTrigger
             //Debug.Log("Condenser OnExit");
             m_HasPlayedCondensation = false;
             StepPlaceObjects.SetPipeConnectorPlaced(false);
-            CondensationEffect.TurnOffCondensationEffect();
+            m_CondensationEffect.TurnOffCondensationEffect();
         }
     }
     private bool IgnoreTrigger()

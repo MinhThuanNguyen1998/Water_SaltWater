@@ -43,9 +43,8 @@ public class BurnerEffectController : MonoBehaviour
     private IEnumerator CoroutinePlayBoilingEffectAfterDelay()
     {
         m_StepPlaceObjects.SetBurnerUsed(true);
-        yield return new WaitForSeconds(Config.WAITING_TIME_TO_PLAY_Temperatur_Rise_EFFECT);
-        SetTemperatureLevel(m_MaxTemperatureLevel, Config.WAITING_TIME_TO_PLAY_Temperatur_Rise_EFFECT);
-        yield return new WaitForSeconds(Config.WAITING_TIME_TO_PLAY_BOILING_EFFECT);
+        yield return new WaitForSeconds(Config.TemperatureRiseTime);
+        SetTemperatureLevel(m_MaxTemperatureLevel, Config.TemperatureRiseTime);
         PlayLoopSoundBoilingWater();
         m_LiquidVolume.sparklingAmount = m_BoilingPoint;
     }
@@ -57,7 +56,7 @@ public class BurnerEffectController : MonoBehaviour
     }
     public void SetTemperatureLevel(float value, float duration)
     {
-         duration = Mathf.Max(0f,Config.WAITING_TIME_TO_PLAY_BOILING_EFFECT - 5f);
+         duration = Mathf.Max(0f,Config.BoilingTime - 5f);
          m_Thermometer_Inside_Object.transform
             .DOScaleY(value, duration);
     }
