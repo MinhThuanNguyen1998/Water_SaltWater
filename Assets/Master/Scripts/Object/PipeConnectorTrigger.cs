@@ -16,6 +16,7 @@ public class PipeConnectorTrigger : BaseTrigger
             //Debug.Log("Condenser OnTrigger");
             StepPlaceObjects.SetPipeConnectorPlaced(true);
             m_CondensationEffect.TurnOnCondensationEffect();
+            StepPlaceObjects.SetVasePlaced(true);
             m_HasPlayedCondensation = true;
         }
     }
@@ -29,6 +30,7 @@ public class PipeConnectorTrigger : BaseTrigger
             m_HasPlayedCondensation = false;
             StepPlaceObjects.SetPipeConnectorPlaced(false);
             m_CondensationEffect.TurnOffCondensationEffect();
+            StepPlaceObjects.SetVasePlaced(false);
         }
     }
     private bool IgnoreTrigger()
