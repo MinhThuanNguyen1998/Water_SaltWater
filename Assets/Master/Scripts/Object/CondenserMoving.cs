@@ -1,19 +1,20 @@
 ﻿using TMPro;
 using UnityEngine;
-
 public class CondenserMoving : MonoBehaviour
 {
     [SerializeField] private Renderer m_BoundaryCube;
-    [SerializeField] private DragCategory m_DragCategory = DragCategory.None;
     [SerializeField] private float m_RotateSpeed = 0.3f;
-
     [Header("Logic Flags")]
     [SerializeField] private bool m_EnableMoveY = true;
     [SerializeField] private bool m_EnableRotateZ = true;
+    [Header("RotateZ")]
+    [SerializeField] private float m_MinRotateZ = -30f;
+    [SerializeField] private float m_MaxRotateZ = 30f;
 
     private Vector3 m_Offset;
     private Bounds m_Bounds;
     private float m_LastMouseY;
+    private float m_CurrentZ;
     public bool m_IsDragging = false;
 
     private void Awake()
@@ -29,10 +30,8 @@ public class CondenserMoving : MonoBehaviour
     { 
         if (m_BoundaryCube != null) m_Bounds = m_BoundaryCube.bounds;
     }
-
     private void OnMouseDown()
     {
-        if ((MouseDragLock.IsBlocked && m_DragCategory == DragCategory.ChemicalTools)|| MouseDragLock.IsLockedAfterStepsCompleted)return;
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
         m_Offset = transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
@@ -41,15 +40,9 @@ public class CondenserMoving : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        if ((MouseDragLock.IsBlocked && m_DragCategory == DragCategory.ChemicalTools)|| MouseDragLock.IsLockedAfterStepsCompleted)
-        {
-            m_IsDragging = false;
-            return;
-        }
         if (!m_IsDragging) return;
         if (m_EnableMoveY) HandleMoveY();
         if (m_EnableRotateZ) HandleRotateZ();
-        
     }
     private void OnMouseUp() => m_IsDragging = false;
 
@@ -60,18 +53,14 @@ public class CondenserMoving : MonoBehaviour
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePosition);
         float newY = worldMousePos.y + m_Offset.y;
         newY = Mathf.Clamp(newY, m_Bounds.min.y, m_Bounds.max.y);
-        transform.position = new Vector3(
-            transform.position.x,
-            newY,
-            transform.position.z
-        );
+        transform.position = new Vector3(transform.position.x,newY,transform.position.z);
     }
     private void HandleRotateZ()
     {
         float currentMouseY = Input.mousePosition.y;
         float deltaY = currentMouseY - m_LastMouseY;
-        float zRotationDelta = -deltaY * m_RotateSpeed;
-        transform.Rotate(0f, 0f, zRotationDelta, Space.Self);
+        m_CurrentZ = Mathf.Clamp(m_CurrentZ - deltaY * m_RotateSpeed, m_MinRotateZ, m_MaxRotateZ);
+        transform.localRotation = Quaternion.Euler(0f,0f,m_CurrentZ);
         m_LastMouseY = currentMouseY;
     }
 }

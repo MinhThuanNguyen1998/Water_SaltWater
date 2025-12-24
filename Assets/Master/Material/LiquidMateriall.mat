@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _DisortStrength: 1
     - _DistortionOnTexture: 0
-    - _Fill: 0
+    - _Fill: 0.059999995
     - _Metallic: 0.1
     - _NormalStrength: 0.1
     - _QueueControl: 0
