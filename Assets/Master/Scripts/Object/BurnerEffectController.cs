@@ -11,9 +11,6 @@ public class BurnerEffectController : MonoBehaviour
     [SerializeField] private ParticleSystem m_FireParticleSystem;
     [SerializeField] private LiquidVolume m_LiquidVolume;
 
-    [Header("Outline")]
-    [SerializeField] private List<Outline> m_ListOutline;
-
     [Header("GameObject")]
     [SerializeField] private GameObject m_LighterMovingObject;
     [SerializeField] private GameObject m_Thermometer_Inside_Object;
