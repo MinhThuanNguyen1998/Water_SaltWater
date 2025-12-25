@@ -33,7 +33,7 @@ MonoBehaviour:
     buttonContent: "N\xFAt \u0111\u1EC3 b\u1EADt ch\u1EBF \u0111\u1ED9\\ng\u1EE3i
       \xFD"
     buttonAudio: {fileID: 8300000, guid: ac3d45a75155e1742a7b3e24bf685a73, type: 3}
-  - buttonName: "T\u1ED1c \u0111\u1ED9 s\xF4i"
+  - buttonName: "Th\u1EDDi gian s\xF4i"
     buttonContent: "N\xFAt \u0111i\u1EC1u ch\u1EC9nh\\n th\u1EDDi gian s\xF4i"
     buttonAudio: {fileID: 8300000, guid: 62221022d5d5eb24ebb05ef655242db8, type: 3}
   - buttonName: "B\xECnh th\u1EE7y tinh"
