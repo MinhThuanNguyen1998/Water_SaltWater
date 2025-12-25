@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 public class CondenserMoving : MonoBehaviour
 {
     [SerializeField] private Renderer m_BoundaryCube;
@@ -32,6 +33,7 @@ public class CondenserMoving : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
         m_Offset = transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
@@ -40,6 +42,7 @@ public class CondenserMoving : MonoBehaviour
     }
     private void OnMouseDrag()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
         if (!m_IsDragging) return;
         if (m_EnableMoveY) HandleMoveY();
         if (m_EnableRotateZ) HandleRotateZ();

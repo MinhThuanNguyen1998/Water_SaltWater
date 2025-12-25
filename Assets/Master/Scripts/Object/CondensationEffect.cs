@@ -11,7 +11,7 @@ public class CondensationEffect : MonoBehaviour
     [Header("LiquidAlpha")]
     private float m_DefaultLiquid = 0f;
     private float m_MaxLiquid = 1f;
-    
+
     private Coroutine m_CondensationCoroutine;
     private Tween m_CondensationTween;
     private bool m_IsPlaying;

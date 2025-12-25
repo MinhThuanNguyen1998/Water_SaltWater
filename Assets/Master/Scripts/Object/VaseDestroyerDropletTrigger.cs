@@ -11,6 +11,7 @@ public class VaseDestroyerDropletTrigger : BaseTrigger
         {
             float newFill = Mathf.Clamp(m_LevelLiquidVaseControl.CurrentFill + m_FillValue, 0f, m_MaxFillValue);
             m_LevelLiquidVaseControl.ControlFillLevel(newFill);
+            AudioMainManager.Instance.PlayOnShot(SoundType.WaterDrip);
             Destroy(other.gameObject);
         }
 

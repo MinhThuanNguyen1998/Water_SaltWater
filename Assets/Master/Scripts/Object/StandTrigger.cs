@@ -21,6 +21,7 @@ public class StandTrigger : BaseTrigger
                  });
             StepPlaceObjects.SetStandPlaced(true);
             m_BurnerEffectController.TurnOnBoilingEffect();
+            AudioMainManager.Instance.PlayOnShot(SoundType.Place_Flask);
         }
     }
 }

@@ -6,10 +6,9 @@ public enum SoundType
     Button,
     Popup,
     TurnOnLighter,
-    CloseBottle,
-    Solid,
-    Liquid,
-    Gas,
+    WaterDrip,
+    Place_Flask
+    
 }
 public class AudioMainManager : SingletonMain<AudioMainManager>
 {
@@ -18,12 +17,11 @@ public class AudioMainManager : SingletonMain<AudioMainManager>
     [SerializeField] private AudioClip m_AudioPopupClip;
     [SerializeField] private AudioClip m_AudioButtonClip;
     [SerializeField] private AudioClip m_AudioTurnOnLighter;
-    [SerializeField] private AudioClip m_AudioCloseBottle;
+    [SerializeField] private AudioClip m_AudioWaterDrip;
+    [SerializeField] private AudioClip m_AudioPlace_Flask;
 
-    [SerializeField] private AudioClip m_AudioSolid;
-    [SerializeField] private AudioClip m_AudioLiquid;
-    [SerializeField] private AudioClip m_AudioGas;
- 
+
+
 
     private Dictionary<SoundType, AudioClip> m_SoundMap;
     private void Awake()
@@ -33,10 +31,8 @@ public class AudioMainManager : SingletonMain<AudioMainManager>
             { SoundType.Button, m_AudioButtonClip },
             { SoundType.Popup, m_AudioPopupClip },
             {SoundType.TurnOnLighter,m_AudioTurnOnLighter },
-            {SoundType.CloseBottle,m_AudioCloseBottle },
-            {SoundType.Solid,m_AudioSolid},
-            {SoundType.Liquid,m_AudioLiquid},
-            {SoundType.Gas, m_AudioGas },
+            {SoundType.WaterDrip,m_AudioWaterDrip },
+             {SoundType.Place_Flask,m_AudioPlace_Flask },
         };
     }
     public void PlayOnShot(SoundType soundType)
