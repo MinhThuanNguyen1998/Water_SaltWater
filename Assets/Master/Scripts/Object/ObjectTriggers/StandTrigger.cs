@@ -13,12 +13,8 @@ public class StandTrigger : BaseTrigger
             MouseDragLock.Block();
             Transform flask = other.transform.parent;
             flask.SetParent(m_ParentStand.transform);
-            flask.DOMove(m_AnchorStand.position, 1f)
-                 .SetEase(Ease.InOutSine)
-                 .OnComplete(() =>
-                 {
-                     flask.localPosition = m_AnchorStand.localPosition;
-                 });
+            flask.DOLocalMove(m_AnchorStand.localPosition, 1f)
+                 .SetEase(Ease.InOutSine);
             StepPlaceObjects.SetStandPlaced(true);
             m_BurnerEffectController.TurnOnBoilingEffect();
             AudioMainManager.Instance.PlayOnShot(SoundType.Place_Flask);
