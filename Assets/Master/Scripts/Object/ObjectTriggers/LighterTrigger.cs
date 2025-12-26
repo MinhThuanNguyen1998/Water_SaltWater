@@ -3,6 +3,7 @@ using UnityEngine;
 public class LighterTrigger : BaseTrigger
 {
     [SerializeField] private BurnerEffectController m_BurnerEffectController;
+    [SerializeField] private CondensationEffectController m_CondensationEffectController;
     [SerializeField] private LighterButton m_LighterButton;
     private bool m_IsInTrigger = false;    
     protected override void OnEnter(Collider other)
@@ -26,5 +27,6 @@ public class LighterTrigger : BaseTrigger
     {
         if (!m_IsInTrigger || !m_LighterButton.IsFireOn) return;
         m_BurnerEffectController.TurnOnFireEfect();
+        m_CondensationEffectController.TurnOnCondensationEffect();
     }
 }

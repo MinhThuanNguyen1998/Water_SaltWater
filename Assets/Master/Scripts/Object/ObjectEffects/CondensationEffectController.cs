@@ -3,11 +3,12 @@ using DG.Tweening;
 using LiquidVolumeFX;
 using UnityEngine;
 
-public class CondensationEffect : MonoBehaviour
+public class CondensationEffectController : MonoBehaviour
 {
     [SerializeField] private LiquidVolume m_Liquid_Inside_Condenser;
-    [SerializeField] private float m_CondensationDuration = 10f;
     [SerializeField] private DropletSpawner m_DropletSpawner;
+    [Header("StepPlaceObjects")]
+    [SerializeField] private StepPlaceObjects m_StepPlaceObjects;
     [Header("LiquidAlpha")]
     private float m_DefaultLiquid = 0f;
     private float m_MaxLiquid = 1f;
@@ -21,7 +22,7 @@ public class CondensationEffect : MonoBehaviour
     }
     public void TurnOnCondensationEffect()
     {
-        if (m_IsPlaying) return;
+        if (m_IsPlaying || !m_StepPlaceObjects.PipeConnectorPlaced || !m_StepPlaceObjects.BurnerUsed) return;
         m_IsPlaying = true;
         StopAllCondensation();
         m_CondensationCoroutine = StartCoroutine(CoroutinePlayCondensationAfterDelay());
@@ -48,7 +49,7 @@ public class CondensationEffect : MonoBehaviour
                 () => m_Liquid_Inside_Condenser.level,
                 x => m_Liquid_Inside_Condenser.level = x,
                 m_DefaultLiquid,
-                m_CondensationDuration
+                Config.CondensationTime
             )
             .SetEase(Ease.Linear)
             .OnComplete(() =>

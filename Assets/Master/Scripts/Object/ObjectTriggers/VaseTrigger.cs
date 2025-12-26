@@ -8,11 +8,8 @@ public class VaseTrigger : BaseTrigger
         if (other.gameObject.tag == "Vase")
         {
             if (IgnoreTrigger()) return;
-
-            //m_AnchorVase.SetActive(false);
             //Debug.Log("Vase OnTrigger");
             StepPlaceObjects.SetVasePlaced(true);
-            
         }
     }
     protected override void OnExit(Collider other)
@@ -21,12 +18,11 @@ public class VaseTrigger : BaseTrigger
         {
             if (IgnoreTrigger()) return;
             //Debug.Log("Vase OnExit");
-            //m_AnchorVase.SetActive(true);
             StepPlaceObjects.SetVasePlaced(false);
         }
     }
     private bool IgnoreTrigger()
     {
-        return StepPlaceObjects.CurrentStep < 2;
+        return !StepPlaceObjects.PipeConnectorPlaced;
     }
 }

@@ -27,7 +27,10 @@ public class StepPlaceObjects : StepBase
             return 1; // Place pipeconnector
         if (!IsVasePlaced)
             return 2;  // Place vase
-        return 3; // Completed
+        if (!BurnerUsed)
+            return 3;
+            return 2;
+        return 4; // Completed
     }
     protected override void ExecuteCurrentStep()
     {
@@ -48,7 +51,8 @@ public class StepPlaceObjects : StepBase
                 StepTutorialManager.Instance.GotoState(2);
                 break;
             case 3:
-                Debug.Log("Step 3: Review");
+                Debug.Log("Step 3: Burner");
+                StepTutorialManager.Instance.GotoState(3);
                 break;
 
         }
