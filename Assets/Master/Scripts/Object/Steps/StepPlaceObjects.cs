@@ -29,7 +29,6 @@ public class StepPlaceObjects : StepBase
             return 2;  // Place vase
         if (!BurnerUsed)
             return 3;
-            return 2;
         return 4; // Completed
     }
     protected override void ExecuteCurrentStep()
