@@ -44,20 +44,25 @@ public class CondensationEffectController : MonoBehaviour
         m_CondensationTween?.Kill();
         m_Liquid_Inside_Condenser.level = m_MaxLiquid;
         m_Liquid_Inside_Condenser.alpha = m_MaxLiquid;
-        m_CondensationTween = DOTween
-            .To(
-                () => m_Liquid_Inside_Condenser.level,
-                x => m_Liquid_Inside_Condenser.level = x,
-                m_DefaultLiquid,
-                Config.CondensationTime
+        m_CondensationTween = DOTween.Sequence()
+            .Append(
+                DOTween.To(
+                    () => m_Liquid_Inside_Condenser.level,
+                    x => m_Liquid_Inside_Condenser.level = x,
+                    m_DefaultLiquid,
+                    Config.CondensationTime
+                ).SetEase(Ease.Linear)
             )
-            .SetEase(Ease.Linear)
+            .InsertCallback(Config.CondensationTime * 0.6f, () =>
+            {
+                m_DropletSpawner.SpawnDroplet();
+            })
             .OnComplete(() =>
             {
                 if (m_IsPlaying)
                     PlayCondensationLoop();
-                    m_DropletSpawner.SpawnDroplet();
             });
+        m_CondensationTween.Play();
     }
     private void StopAllCondensation()
     {

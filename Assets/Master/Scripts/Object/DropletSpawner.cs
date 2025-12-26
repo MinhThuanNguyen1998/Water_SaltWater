@@ -5,6 +5,7 @@ public class DropletSpawner : MonoBehaviour
     [SerializeField] private Transform m_AnchorDropletParent;
     [SerializeField] private GameObject m_DropletPrefab;
 
+    
     public void SpawnDroplet()
     {
         if (m_DropletPrefab != null && m_AnchorDropletParent != null)
