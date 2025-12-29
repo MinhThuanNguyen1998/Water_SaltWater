@@ -11696,7 +11696,7 @@ MonoBehaviour:
   m_UseSpecialYLimit: 1
   m_DragCategory: 0
   m_IsDragging: 0
-  m_BoundYOffset: 0.5
+  m_BoundYOffset: 0.45
 --- !u!54 &1112204648
 Rigidbody:
   m_ObjectHideFlags: 0
